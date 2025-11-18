@@ -7,6 +7,21 @@ Class {
 	#category : #IPA
 }
 
+{ #category : #'add range EXT' }
+IPAConstants class >> idTagOsmoExtMTTidAddAck [
+	^16r02
+]
+
+{ #category : #'add range EXT' }
+IPAConstants class >> idTagOsmoExtMTTidAddNack [
+	^16r03
+]
+
+{ #category : #'add range EXT' }
+IPAConstants class >> idTagOsmoExtMTTidAddRange [
+	^16r01
+]
+
 { #category : #constants }
 IPAConstants class >> idtagEquipVer [
 	^16r04
@@ -71,6 +86,11 @@ IPAConstants class >> msgIdAck [
 IPAConstants class >> msgIdGet [
 	^16r04
 
+]
+
+{ #category : #'add range EXT' }
+IPAConstants class >> msgIdOsmoExtStpCtrl [
+	^16r09
 ]
 
 { #category : #constants }

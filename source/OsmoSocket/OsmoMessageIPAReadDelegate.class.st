@@ -37,14 +37,20 @@ OsmoMessageIPAReadDelegate >> onNewConnection: aSocket [
  	dispatcher := IPADispatcher new.
 	dispatcher initialize.
 	
-	ipa := IPAProtoHandler new
+	ipa := self protoHandlerClass new
 		    registerOn: dispatcher;
 		    muxer: muxer;
 		    token: token;
 		    yourself.
 
 	connect_block ifNotNil: [connect_block value: dispatcher].
+	^ ipa
 
+]
+
+{ #category : #access }
+OsmoMessageIPAReadDelegate >> protoHandlerClass [
+	^ IPAProtoHandler
 ]
 
 { #category : #'as yet unclassified' }
