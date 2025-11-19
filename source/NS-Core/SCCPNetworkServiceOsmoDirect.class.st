@@ -19,6 +19,11 @@ SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
 		yourself
 ]
 
+{ #category : #access }
+SCCPNetworkServiceOsmoDirect >> delegateClass [
+	^ OsmoMessageIPAReadDelegate
+]
+
 { #category : #'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	ModuleBoundary runSynchronous: [
@@ -32,12 +37,12 @@ SCCPNetworkServiceOsmoDirect >> doSend: aMessage to: aToPoc from: aFromPoc [
 	delegate nextPut: aMessage with: IPAConstants protocolSCCP.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 SCCPNetworkServiceOsmoDirect >> initialize [
 	super initialize.
 
 	conn := OsmoMessageDirectConnection new.
-	delegate := OsmoMessageIPAReadDelegate new.
+	delegate := self delegateClass new.
 	delegate onConnect: [:dispatcher | self registerOn: dispatcher].
 	conn readDelegate: delegate.
 ]
