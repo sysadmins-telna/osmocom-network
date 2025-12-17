@@ -11,8 +11,8 @@ Class {
 	#instVars : [
 		'connectionName'
 	],
-	#category : 'RoamingHub',
-	#package : 'RoamingHub'
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
 { #category : 'parsing' }
