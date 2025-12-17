@@ -2,8 +2,8 @@
 I hold the data of an extended connection less data message.
 "
 Class {
-	#name : #SCCPXUDT,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPXUDT',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'hopCounter',
 		'called',
@@ -13,10 +13,11 @@ Class {
 		'udtClass',
 		'optionalParameters'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT class >> initWith: aCalled calling: aCalling data: aData [
 	^(self new)
 	    calledAddr: aCalled;
@@ -26,13 +27,13 @@ SCCPXUDT class >> initWith: aCalled calling: aCalling data: aData [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT class >> msgType [
 	^SCCPHelper msgXudt
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT class >> parseFrom: aByteArray [
 	|  stream classAndError hopCounter calledAddressOffset calledAddressPos callingAddressOffset callingAddressPos  optionalOffset optionalPos dataOffset dataPos  calledData  callingData  dataSize dataData optionalParameters |
 	stream := aByteArray readStream.
@@ -73,73 +74,73 @@ SCCPXUDT class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> calledAddr [
 	^called
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> calledAddr: aSCCPAddress [ 
 	called := aSCCPAddress
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> callingAddr [
 	^calling
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> callingAddr: aSCCPAddress [ 
 	calling := aSCCPAddress
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> data [
 	^ data
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> data: aCollection [ 
 	data := aCollection
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> errorHandling [
 	^error
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> errorHandling: anInteger [ 
 	error := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> hopCounter [
 	^hopCounter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> hopCounter: anInteger [ 
 	hopCounter := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> initialize [
 	super initialize.
 	optionalParameters := Dictionary new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> isSegmented [
 	^optionalParameters dict includesKey: SCCPHelper pncSegmentation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> optionalParameters: parameters [
 	optionalParameters := parameters
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> parseSegmentation [
 	| segmentationData  |
 	"This is handling 3.17 of Q.713 and should probably be done
@@ -150,17 +151,17 @@ SCCPXUDT >> parseSegmentation [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> udtClass [
 	^udtClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> udtClass: anInteger [ 
 	udtClass := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPXUDT >> writeOn: aMsg [
 	| calledData callingData dat |
 	calledData := called asByteArray.

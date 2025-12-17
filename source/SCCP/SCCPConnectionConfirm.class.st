@@ -2,17 +2,18 @@
 I hold the data of a connection confirm.
 "
 Class {
-	#name : #SCCPConnectionConfirm,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionConfirm',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'src',
 		'dst',
 		'pnc'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPConnectionConfirm class >> initWithSrc: aSrc dst: aDst [
 	^(self new)
 	    src: aSrc dst: aDst;
@@ -20,13 +21,13 @@ SCCPConnectionConfirm class >> initWithSrc: aSrc dst: aDst [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SCCPConnectionConfirm class >> msgType [
 	^SCCPHelper msgCc
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionConfirm class >> parseFrom: aMsg [
 	| src dst proto optional |
 	dst := SCCPAddrReference fromByteArray: (aMsg copyFrom: 2 to: 4).
@@ -41,32 +42,32 @@ SCCPConnectionConfirm class >> parseFrom: aMsg [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionConfirm >> dst [
 	^dst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionConfirm >> pnc [
 	^pnc ifNil: [pnc := SCCPPNC new]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionConfirm >> src [
 	^src
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionConfirm >> src: aSrc dst: aDst [
 	src := aSrc.
 	dst := aDst
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionConfirm >> writeOn: aMsg [
 	aMsg putByte: SCCPHelper msgCc.
 	SCCPAddrReference store: dst on: aMsg.

@@ -6,44 +6,45 @@ I model Q.711 to some degree. Right now only UnitData (UDT) is handled. For conn
 Currently only 'CLASS-0' kind of traffic is supported.
 "
 Class {
-	#name : #SCCPNetworkService,
-	#superclass : #Object,
+	#name : 'SCCPNetworkService',
+	#superclass : 'Object',
 	#instVars : [
 		'on_data',
 		'defaultRoute',
 		'logger',
 		'connectionName'
 	],
-	#category : #'NS-Core'
+	#category : 'NS-Core',
+	#package : 'NS-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkService class >> layer [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkService >> connectionName [
 	^ connectionName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkService >> connectionName: aName [ 
 	connectionName := aName
 ]
 
-{ #category : #routing }
+{ #category : 'routing' }
 SCCPNetworkService >> defaultRoute [
 	^defaultRoute
 ]
 
-{ #category : #routing }
+{ #category : 'routing' }
 SCCPNetworkService >> defaultRoute: aRoute [
 	"Set the default route. It should be a dictionary with DPC/OPC"
 	defaultRoute := aRoute
 ]
 
-{ #category : #internal }
+{ #category : 'internal' }
 SCCPNetworkService >> doReceive: aMsg [
 	| msg |
 	msg := SCCPMessage decode: aMsg.
@@ -51,18 +52,18 @@ SCCPNetworkService >> doReceive: aMsg [
 	msg tcapNetworkServiceDispatch: self.
 ]
 
-{ #category : #internal }
+{ #category : 'internal' }
 SCCPNetworkService >> doSend: aMessage to: aToPoc from: aFromPoc [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkService >> initialize [
 	super initialize.
 	logger := LogStructuredLogger for: self area: #sccp.
 ]
 
-{ #category : #registration }
+{ #category : 'registration' }
 SCCPNetworkService >> onUnitData: aBlock [
 	"Reported when data has arrived. The callback will include the:
 		calling address
@@ -71,7 +72,7 @@ SCCPNetworkService >> onUnitData: aBlock [
 	on_data := aBlock.
 ]
 
-{ #category : #routing }
+{ #category : 'routing' }
 SCCPNetworkService >> selectRouteTo: calledAddress from: callingAddress [
 
 	"Do we know where to send things?"
@@ -88,7 +89,7 @@ SCCPNetworkService >> selectRouteTo: calledAddress from: callingAddress [
 	^self defaultRoute.
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 SCCPNetworkService >> sendUnitData: aByteArray to: calledAddr from: callingAddr [
 	"Send data to a specified address or raise an exception if the address is
 	not routable."
@@ -116,7 +117,7 @@ SCCPNetworkService >> sendUnitData: aByteArray to: calledAddr from: callingAddr 
 				from: (routing at: 'opc')]
 ]
 
-{ #category : #internal }
+{ #category : 'internal' }
 SCCPNetworkService >> signalUnitData: msg [
 	<tcapMethod>
 	"Inform the upper layer about data"

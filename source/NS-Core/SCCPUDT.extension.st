@@ -1,6 +1,6 @@
-Extension { #name : #SCCPUDT }
+Extension { #name : 'SCCPUDT' }
 
-{ #category : #'*NS-Core' }
+{ #category : '*NS-Core' }
 SCCPUDT >> tcapNetworkServiceDispatch: aService [
 	aService signalUnitData: self.
 ]

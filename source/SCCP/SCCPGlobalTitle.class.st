@@ -2,41 +2,42 @@
 I represent the Global Title of Q.713.
 "
 Class {
-	#name : #SCCPGlobalTitle,
-	#superclass : #Object,
+	#name : 'SCCPGlobalTitle',
+	#superclass : 'Object',
 	#instVars : [
 		'indicator',
 		'nai',
 		'data'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #'encoding-scheme' }
+{ #category : 'encoding-scheme' }
 SCCPGlobalTitle class >> esBCDEven [
 	^2
 
 ]
 
-{ #category : #'encoding-scheme' }
+{ #category : 'encoding-scheme' }
 SCCPGlobalTitle class >> esBCDOdd [
 	^1
 
 ]
 
-{ #category : #'encoding-scheme' }
+{ #category : 'encoding-scheme' }
 SCCPGlobalTitle class >> esNational [
 	^3
 
 ]
 
-{ #category : #'encoding-scheme' }
+{ #category : 'encoding-scheme' }
 SCCPGlobalTitle class >> esUnknown [
 	^0
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPGlobalTitle class >> formatAddr: aNumber on: data [
 	| nr odd |
 	nr := OrderedCollection new.
@@ -54,37 +55,37 @@ SCCPGlobalTitle class >> formatAddr: aNumber on: data [
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPGlobalTitle class >> gtiIndGTI [
 	^1
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPGlobalTitle class >> gtiIndNoGTI [
 	^0
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPGlobalTitle class >> gtiIndTransNumbrAndMore [
 	^4
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPGlobalTitle class >> gtiIndTransNumbrPlanAndEnc [
 	^3
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPGlobalTitle class >> gtiIndTransOnlyGTI [
 	^2
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPGlobalTitle class >> initWith: gti_ind data: gti [
 	self 
 	    allSubclassesDo: [:each | each subType = gti_ind ifTrue: [^each initWith: gti]].
@@ -92,7 +93,7 @@ SCCPGlobalTitle class >> initWith: gti_ind data: gti [
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPGlobalTitle class >> map: aDigit [
 	^(aDigit >= 0 and: [aDigit <= 9]) 
 	    ifTrue: [(aDigit + 48) asCharacter]
@@ -100,85 +101,85 @@ SCCPGlobalTitle class >> map: aDigit [
 
 ]
 
-{ #category : #nai }
+{ #category : 'nai' }
 SCCPGlobalTitle class >> naiInternationalNumber [
 	^4
 
 ]
 
-{ #category : #nai }
+{ #category : 'nai' }
 SCCPGlobalTitle class >> naiNationalSign [
 	^3
 
 ]
 
-{ #category : #nai }
+{ #category : 'nai' }
 SCCPGlobalTitle class >> naiReservedNational [
 	^2
 
 ]
 
-{ #category : #nai }
+{ #category : 'nai' }
 SCCPGlobalTitle class >> naiSubscriber [
 	^1
 
 ]
 
-{ #category : #nai }
+{ #category : 'nai' }
 SCCPGlobalTitle class >> naiUnknown [
 	^0
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npData [
 	^3
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npGeneric [
 	^2
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npISDN [
 	^1
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npLand [
 	^6
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npMaritime [
 	^5
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npMobile [
 	^7
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npTelex [
 	^4
 
 ]
 
-{ #category : #'numbering-plan' }
+{ #category : 'numbering-plan' }
 SCCPGlobalTitle class >> npUnknown [
 	^0
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPGlobalTitle class >> parseAddr: data encoding: aEnc [
 	| odd split |
 	(aEnc = 1 or: [aEnc = 2]) 
@@ -195,7 +196,7 @@ SCCPGlobalTitle class >> parseAddr: data encoding: aEnc [
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPGlobalTitle class >> unmap: aChar [
 	| digit |
 	digit := aChar asInteger.

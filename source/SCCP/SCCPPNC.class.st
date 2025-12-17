@@ -3,15 +3,16 @@ I can parse and write the optional
     data of SCCP messages.
 "
 Class {
-	#name : #SCCPPNC,
-	#superclass : #Object,
+	#name : 'SCCPPNC',
+	#superclass : 'Object',
 	#instVars : [
 		'dict'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPPNC class >> parseFrom: aPnc [
 	| dict pnc |
 	pnc := aPnc.
@@ -33,36 +34,36 @@ SCCPPNC class >> parseFrom: aPnc [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPPNC >> at: aKey [
 	^self dict at: aKey
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPPNC >> at: aKey put: aValue [
 	self dict at: aKey put: aValue
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPPNC >> dict [
 	^dict ifNil: [dict := Dictionary new]
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SCCPPNC >> dict: aDict [
 	dict := aDict
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPPNC >> isEmpty [
 	^self dict isEmpty
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPPNC >> writeOn: aMsg [
 	self dict keysAndValuesDo: 
 		[:key :val | 

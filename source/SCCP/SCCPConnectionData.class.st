@@ -2,16 +2,17 @@
 I hold the data of a data memssage.
 "
 Class {
-	#name : #SCCPConnectionData,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionData',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'dst',
 		'data'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPConnectionData class >> initWith: dst data: data [
 	^(self new)
 	    dst: dst;
@@ -20,13 +21,13 @@ SCCPConnectionData class >> initWith: dst data: data [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SCCPConnectionData class >> msgType [
 	^SCCPHelper msgDt1
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionData class >> parseFrom: aByteArray [
 	| more_data var_start addr size data |
 	addr := SCCPAddrReference 
@@ -40,13 +41,13 @@ SCCPConnectionData class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionData >> data [
 	^data
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SCCPConnectionData >> data: aData [
 	data := aData.
 	data size > 16rFF 
@@ -56,19 +57,19 @@ SCCPConnectionData >> data: aData [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionData >> dst [
 	^dst
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SCCPConnectionData >> dst: aDst [
 	dst := aDst
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionData >> writeOn: aMsg [
 	| dat |
 	aMsg putByte: self class msgType.

@@ -1,10 +1,12 @@
 Class {
-	#name : #SCCPNetworkDebugHelper,
-	#superclass : #Object,
-	#category : #'NS-Core-Tests'
+	#name : 'SCCPNetworkDebugHelper',
+	#superclass : 'Object',
+	#category : 'NS-Core-Tests',
+	#package : 'NS-Core',
+	#tag : 'Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkDebugHelper class >> sendTCAP: aByteArray [
 	| networkService server conn |
 	"Initialize a pair of server and client"

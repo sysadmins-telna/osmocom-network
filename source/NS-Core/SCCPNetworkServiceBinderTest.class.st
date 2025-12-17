@@ -1,10 +1,12 @@
 Class {
-	#name : #SCCPNetworkServiceBinderTest,
-	#superclass : #TestCase,
-	#category : #'NS-Core-Tests'
+	#name : 'SCCPNetworkServiceBinderTest',
+	#superclass : 'TestCase',
+	#category : 'NS-Core-Tests',
+	#package : 'NS-Core',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SCCPNetworkServiceBinderTest >> testBindings [
 	| binder |
 	"Tests SCCPNetworkServiceBinder>>#bindings"

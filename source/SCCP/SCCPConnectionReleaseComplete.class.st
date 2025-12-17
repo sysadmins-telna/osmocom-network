@@ -2,16 +2,17 @@
 I hold the data of a released connection.
 "
 Class {
-	#name : #SCCPConnectionReleaseComplete,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionReleaseComplete',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'dst',
 		'src'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPConnectionReleaseComplete class >> initWithDst: aDst src: aSrc [
 	^(self new)
 	    dst: aDst;
@@ -20,13 +21,13 @@ SCCPConnectionReleaseComplete class >> initWithDst: aDst src: aSrc [
 
 ]
 
-{ #category : #fields }
+{ #category : 'fields' }
 SCCPConnectionReleaseComplete class >> msgType [
 	^SCCPHelper msgRlc
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionReleaseComplete class >> parseFrom: aByteArray [
 	^(self new)
 	    dst: (SCCPAddrReference fromByteArray: (aByteArray copyFrom: 2 to: 4));
@@ -35,31 +36,31 @@ SCCPConnectionReleaseComplete class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleaseComplete >> dst [
 	^dst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleaseComplete >> dst: aDst [
 	dst := aDst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleaseComplete >> src [
 	^src
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleaseComplete >> src: aSrc [
 	src := aSrc
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionReleaseComplete >> writeOn: aMsg [
 	aMsg putByte: self class msgType.
 	SCCPAddrReference store: dst on: aMsg.

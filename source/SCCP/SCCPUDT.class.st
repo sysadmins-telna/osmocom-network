@@ -2,8 +2,8 @@
 I hold the data of a connection less data message.
 "
 Class {
-	#name : #SCCPUDT,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPUDT',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'called',
 		'calling',
@@ -11,10 +11,11 @@ Class {
 		'error',
 		'udtClass'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPUDT class >> initWith: aCalled calling: aCalling data: aData [
 	^(self new)
 	    calledAddr: aCalled;
@@ -24,13 +25,13 @@ SCCPUDT class >> initWith: aCalled calling: aCalling data: aData [
 
 ]
 
-{ #category : #fields }
+{ #category : 'fields' }
 SCCPUDT class >> msgType [
 	^SCCPHelper msgUdt
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPUDT class >> parseFrom: aByteArray [
 	| called calledData calling callingData data dataData dataSize |
 	called := aByteArray at: 3.
@@ -50,67 +51,67 @@ SCCPUDT class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> calledAddr [
 	^called
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> calledAddr: aCalled [
 	called := aCalled
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> callingAddr [
 	^calling
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> callingAddr: aCalling [
 	calling := aCalling
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> data [
 	^data
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> data: aData [
 	data := aData
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> errorHandling [
 	^error ifNil: [0]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> errorHandling: aStrategy [
 	error := aStrategy
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> udtClass [
 	^udtClass ifNil: [0]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPUDT >> udtClass: aClass [
 	udtClass := aClass
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPUDT >> writeOn: aMsg [
 	| calledData callingData dat |
 	calledData := called asByteArray.

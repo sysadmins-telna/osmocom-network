@@ -2,8 +2,8 @@
 I hold the data of an inactivity test.
 "
 Class {
-	#name : #SCCPInactivityTest,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPInactivityTest',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'src',
 		'dst',
@@ -11,10 +11,11 @@ Class {
 		'seq',
 		'credit'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPInactivityTest class >> initWithDst: aDst src: aSrc [
 	^(self new)
 	    dst: aDst;
@@ -23,13 +24,13 @@ SCCPInactivityTest class >> initWithDst: aDst src: aSrc [
 
 ]
 
-{ #category : #field }
+{ #category : 'field' }
 SCCPInactivityTest class >> msgType [
 	^SCCPHelper msgIt
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPInactivityTest class >> parseFrom: aByteArray [
 	| dst src proto seq credit |
 	dst := SCCPAddrReference 
@@ -44,67 +45,67 @@ SCCPInactivityTest class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> credit [
 	^credit ifNil: [0]
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> credit: aCredit [
 	credit := aCredit
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> dst [
 	^dst
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> dst: aDst [
 	dst := aDst
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> protoClass [
 	^proto ifNil: [0]
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> protoClass: aClass [
 	proto := aClass
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> seq [
 	^seq ifNil: [ByteArray new: 2]
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> seq: aSeq [
 	seq := aSeq
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> src [
 	^src
 
 ]
 
-{ #category : #stuff }
+{ #category : 'stuff' }
 SCCPInactivityTest >> src: aSrc [
 	src := aSrc
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPInactivityTest >> writeOn: aMsg [
 	aMsg putByte: self class msgType.
 	SCCPAddrReference store: dst on: aMsg.

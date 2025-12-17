@@ -1,16 +1,17 @@
 Class {
-	#name : #SCCPSegmentation,
-	#superclass : #Object,
+	#name : 'SCCPSegmentation',
+	#superclass : 'Object',
 	#instVars : [
 		'firstSegment',
 		'segmentClass',
 		'remainingSegments',
 		'sourceReference'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation class >> readFrom: aStream [
 	| res data |
 	res := self new.
@@ -23,37 +24,37 @@ SCCPSegmentation class >> readFrom: aStream [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> firstSegment [
 	^ firstSegment
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> firstSegment: aBoolean [
 	firstSegment := aBoolean
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> remainingSegments [
 	^ remainingSegments
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> remainingSegments: anInteger [ 
 	remainingSegments := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> segmentClass: anInteger [ 
 	segmentClass := anInteger
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> sourceReference [
 	^ sourceReference
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPSegmentation >> sourceReference: aReference [
 	sourceReference := aReference
 ]

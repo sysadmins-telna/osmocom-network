@@ -2,18 +2,19 @@
 I hold the data of a connection release message.
 "
 Class {
-	#name : #SCCPConnectionReleased,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionReleased',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'src',
 		'dst',
 		'cause',
 		'pnc'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPConnectionReleased class >> initWithDst: aDst src: aSrc cause: aCause [
 	^(self new)
 	    dst: aDst;
@@ -23,13 +24,13 @@ SCCPConnectionReleased class >> initWithDst: aDst src: aSrc cause: aCause [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SCCPConnectionReleased class >> msgType [
 	^SCCPHelper msgRlsd
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionReleased class >> parseFrom: aByteArray [
 	| dst src cause |
 	dst := SCCPAddrReference 
@@ -44,49 +45,49 @@ SCCPConnectionReleased class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> cause [
 	^cause
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> cause: aCause [
 	cause := aCause
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> dst [
 	^dst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> dst: aDst [
 	dst := aDst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> pnc [
 	^pnc ifNil: [pnc := SCCPPNC new]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> src [
 	^src
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionReleased >> src: aSrc [
 	src := aSrc
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionReleased >> writeOn: aMsg [
 	aMsg putByte: self class msgType.
 	SCCPAddrReference store: dst on: aMsg.

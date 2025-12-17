@@ -1,20 +1,27 @@
 Class {
-	#name : #SCCPNetworkServiceForOsmoExtension,
-	#superclass : #SCCPNetworkServiceOsmoDirect,
+	#name : 'SCCPNetworkServiceForOsmoExtension',
+	#superclass : 'SCCPNetworkServiceOsmoDirect',
 	#instVars : [
-		'nodeId',
 		'isIPARegistrationOk',
-		'ipaSeq'
+		'ipaSeq',
+		'nodeIdAndClusterId'
 	],
-	#category : #'NS-Core-Osmo EXT'
+	#category : 'NS-Core-Osmo EXT',
+	#package : 'NS-Core',
+	#tag : 'Osmo EXT'
 }
 
-{ #category : #access }
+{ #category : 'accessing' }
+SCCPNetworkServiceForOsmoExtension >> clusterId [
+	^ nodeIdAndClusterId clusterId
+]
+
+{ #category : 'access' }
 SCCPNetworkServiceForOsmoExtension >> delegateClass [
 	^ OsmoWithExtensionMessageReadDelegate
 ]
 
-{ #category : #receiving }
+{ #category : 'receiving' }
 SCCPNetworkServiceForOsmoExtension >> doIpaRecv: aMsg [
 	| message |
 	self isIPARegistrationOk
@@ -25,23 +32,23 @@ SCCPNetworkServiceForOsmoExtension >> doIpaRecv: aMsg [
 	super doIpaRecv: aMsg
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 SCCPNetworkServiceForOsmoExtension >> doSendIPA: aMessage to: aToPoc from: aFromPoc [
 	delegate nextPut: aMessage with: IPAConstants protocolOSMO
 ]
 
-{ #category : #'add range' }
+{ #category : 'add range' }
 SCCPNetworkServiceForOsmoExtension >> endTidRange [
-	^ (ByteArray readHexFrom: ('{1}{1}0000FF' format: {self nodeId}))
+	^ (ByteArray with: self clusterId  with: self nodeId with: 16rFF with: 16rFF)
 		asInteger
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SCCPNetworkServiceForOsmoExtension >> incrementeIpaSequence [
 	ipaSeq := ipaSeq + 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SCCPNetworkServiceForOsmoExtension >> initialize [
 	super initialize.
 	delegate networkService: self.
@@ -49,7 +56,7 @@ SCCPNetworkServiceForOsmoExtension >> initialize [
 	ipaSeq := 0
 ]
 
-{ #category : #receiving }
+{ #category : 'receiving' }
 SCCPNetworkServiceForOsmoExtension >> ipaRecvExtensionOsmo: aMsg [
 	| ackOrNack ok |
 	ackOrNack := IPAStpCtrl parseByteArrayWithoutSizeAndProtocol: aMsg contents.
@@ -63,17 +70,17 @@ SCCPNetworkServiceForOsmoExtension >> ipaRecvExtensionOsmo: aMsg [
 	self isIPARegistrationOk: ok
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPNetworkServiceForOsmoExtension >> isIPARegistrationOk [
 	^ isIPARegistrationOk
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPNetworkServiceForOsmoExtension >> isIPARegistrationOk: anObject [
 	isIPARegistrationOk := anObject
 ]
 
-{ #category : #'add range' }
+{ #category : 'add range' }
 SCCPNetworkServiceForOsmoExtension >> newAddRAnge [
 	| addRange |
 	self incrementeIpaSequence.
@@ -86,17 +93,17 @@ SCCPNetworkServiceForOsmoExtension >> newAddRAnge [
 	^ addRange
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPNetworkServiceForOsmoExtension >> nodeId [
-	^ nodeId
+	^ nodeIdAndClusterId nodeId
 ]
 
-{ #category : #accessing }
-SCCPNetworkServiceForOsmoExtension >> nodeId: anObject [
-	nodeId := anObject
+{ #category : 'accessing' }
+SCCPNetworkServiceForOsmoExtension >> nodeIdAndClusterId: anObject [
+	nodeIdAndClusterId := anObject
 ]
 
-{ #category : #registering }
+{ #category : 'registering' }
 SCCPNetworkServiceForOsmoExtension >> registerOn: aDispatcher [
 	super registerOn: aDispatcher.
 	aDispatcher
@@ -107,7 +114,7 @@ SCCPNetworkServiceForOsmoExtension >> registerOn: aDispatcher [
 		on: [ :msg | self ipaRecvExtensionOsmo: msg ]
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 SCCPNetworkServiceForOsmoExtension >> sendNewAddRangeMessage [
 	| msg |
 	msg := MessageBuffer new.
@@ -121,13 +128,8 @@ SCCPNetworkServiceForOsmoExtension >> sendNewAddRangeMessage [
 	self doSendIPA: msg to: nil from: nil
 ]
 
-{ #category : #'add range' }
+{ #category : 'add range' }
 SCCPNetworkServiceForOsmoExtension >> startTidRange [
-	^ (ByteArray readHexFrom: ('{1}{1}000000' format: {self nodeId}))
+	^ (ByteArray with: self clusterId  with: self nodeId with: 16r00 with: 16r00)
 		asInteger
-]
-
-{ #category : #'add range' }
-SCCPNetworkServiceForOsmoExtension >> tidRange [
-	^ '0x{1}{1}000000 - 0x{1}{1}0000FF' format: {self nodeId}
 ]

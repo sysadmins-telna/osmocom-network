@@ -2,15 +2,16 @@
 I'm a blocking reader. My parsed SCCP messages will be put into a blocking queue and one or more workers can then fetch the messages. This allows better parallelism in Smalltalk 
 "
 Class {
-	#name : #SCCPNetworkServiceOsmoDirect,
-	#superclass : #SCCPNetworkServiceOsmoBase,
+	#name : 'SCCPNetworkServiceOsmoDirect',
+	#superclass : 'SCCPNetworkServiceOsmoBase',
 	#instVars : [
 		'delegate'
 	],
-	#category : #'NS-Core'
+	#category : 'NS-Core',
+	#package : 'NS-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
 	^self new
 		connectionName: (aDictionary at: 'connectionName');
@@ -19,12 +20,12 @@ SCCPNetworkServiceOsmoDirect class >> materializeFrom: aDictionary [
 		yourself
 ]
 
-{ #category : #access }
+{ #category : 'access' }
 SCCPNetworkServiceOsmoDirect >> delegateClass [
 	^ OsmoMessageIPAReadDelegate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	ModuleBoundary runSynchronous: [
 		LogDataPayload value: aMsg.
@@ -32,12 +33,12 @@ SCCPNetworkServiceOsmoDirect >> doIpaRecv: aMsg [
 	]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> doSend: aMessage to: aToPoc from: aFromPoc [
 	delegate nextPut: aMessage with: IPAConstants protocolSCCP.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SCCPNetworkServiceOsmoDirect >> initialize [
 	super initialize.
 
@@ -47,7 +48,7 @@ SCCPNetworkServiceOsmoDirect >> initialize [
 	conn readDelegate: delegate.
 ]
 
-{ #category : #'external-configuration' }
+{ #category : 'external-configuration' }
 SCCPNetworkServiceOsmoDirect >> toExternalDictionary [
 	^{
 		'class' -> self class name asString.
@@ -58,7 +59,7 @@ SCCPNetworkServiceOsmoDirect >> toExternalDictionary [
 	} asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPNetworkServiceOsmoDirect >> token: aToken [
 	"Forward the token to the connection."
 	delegate token: aToken.

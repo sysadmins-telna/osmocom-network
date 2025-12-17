@@ -1,6 +1,6 @@
 Class {
-	#name : #SCCPMockNetworkService,
-	#superclass : #SCCPNetworkService,
+	#name : 'SCCPMockNetworkService',
+	#superclass : 'SCCPNetworkService',
 	#instVars : [
 		'otherService',
 		'messageQueue',
@@ -8,20 +8,22 @@ Class {
 		'receivedPackets',
 		'autoDispatch'
 	],
-	#category : #'NS-Core-Tests'
+	#category : 'NS-Core-Tests',
+	#package : 'NS-Core',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPMockNetworkService >> autoDispatch: aBoolean [
 	autoDispatch := aBoolean
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> connectTo: aService [
 	otherService := aService.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> defaultRoute [
 	^Dictionary new
 		at: 'dpc' put: 10;
@@ -29,19 +31,19 @@ SCCPMockNetworkService >> defaultRoute [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> dequeueMessage [
 	^messageQueue removeFirst
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> dispatchMessages [
 	messageQueue do: [ :message |
 		sentPackets add: (SCCPMessage decode: message) data.
 		otherService doReceive: message ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> doSend: aByteArray to: calledAddr from: callingAddr [
 	(otherService notNil & autoDispatch) 
 		ifTrue: [
@@ -51,7 +53,7 @@ SCCPMockNetworkService >> doSend: aByteArray to: calledAddr from: callingAddr [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SCCPMockNetworkService >> initialize [ 
 	super initialize.
 	autoDispatch := true.
@@ -60,17 +62,17 @@ SCCPMockNetworkService >> initialize [
 	messageQueue := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPMockNetworkService >> receivedPackets [
 	^ receivedPackets
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPMockNetworkService >> sentPackets [
 	^ sentPackets
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPMockNetworkService >> signalUnitData: msg [
 	receivedPackets add: msg data.
 	super signalUnitData: msg.

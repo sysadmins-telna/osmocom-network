@@ -1,1 +1,1 @@
-Package { #name : #'NS-Core' }
+Package { #name : 'NS-Core' }

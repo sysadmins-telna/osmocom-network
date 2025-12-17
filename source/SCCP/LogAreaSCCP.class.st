@@ -2,24 +2,25 @@
 I am the debug area for SCCP.
 "
 Class {
-	#name : #LogAreaSCCP,
-	#superclass : #LogArea,
-	#category : #SCCP
+	#name : 'LogAreaSCCP',
+	#superclass : 'LogArea',
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LogAreaSCCP class >> areaDescription [
 	^'SCCP related'
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LogAreaSCCP class >> areaName [
 	^#sccp
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 LogAreaSCCP class >> default [
 	^(self new)
 	    enabled: true;

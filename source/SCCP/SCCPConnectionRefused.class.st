@@ -2,16 +2,17 @@
 I hold the data of a connection refused.
 "
 Class {
-	#name : #SCCPConnectionRefused,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionRefused',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'dst',
 		'cause'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPConnectionRefused class >> initWithDst: aDst cause: aCause [
 	^(self new)
 	    dst: aDst;
@@ -20,13 +21,13 @@ SCCPConnectionRefused class >> initWithDst: aDst cause: aCause [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SCCPConnectionRefused class >> msgType [
 	^SCCPHelper msgCref
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionRefused class >> parseFrom: aMsg [
 	| dst cause |
 	dst := SCCPAddrReference fromByteArray: (aMsg copyFrom: 2 to: 4).
@@ -35,31 +36,31 @@ SCCPConnectionRefused class >> parseFrom: aMsg [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPConnectionRefused >> cause [
 	^cause
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPConnectionRefused >> cause: aCause [
 	cause := aCause
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPConnectionRefused >> dst [
 	^dst
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPConnectionRefused >> dst: aDst [
 	dst := aDst
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionRefused >> writeOn: aMsg [
 	aMsg putByte: self class msgType.
 	SCCPAddrReference store: dst on: aMsg.

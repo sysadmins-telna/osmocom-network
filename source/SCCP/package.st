@@ -1,1 +1,1 @@
-Package { #name : #SCCP }
+Package { #name : 'SCCP' }

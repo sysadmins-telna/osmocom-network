@@ -1,16 +1,17 @@
 Class {
-	#name : #SCCPUDTS,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPUDTS',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'calledAddr',
 		'callingAddr',
 		'returnCause',
 		'data'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS class >> initWith: aCalled calling: aCalling returnCause: aCause data: aData [
 	^self new
 		calledAddr: aCalled;
@@ -21,13 +22,13 @@ SCCPUDTS class >> initWith: aCalled calling: aCalling returnCause: aCause data: 
 		
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS class >> msgType [
 	^SCCPHelper msgUdts
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS class >> parseFrom: aByteArray [
 	| cause called calledData calling callingData data dataData dataSize |
 	cause := aByteArray at: 2.
@@ -47,42 +48,42 @@ SCCPUDTS class >> parseFrom: aByteArray [
 	    data: dataData
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> calledAddr [
 	^ calledAddr
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> calledAddr: aCalledAddress [
 	calledAddr := aCalledAddress
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> callingAddr [
 	^ callingAddr
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> callingAddr: aCallingAddress [
 	callingAddr := aCallingAddress
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> data [
 	^ data
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> data: aData [
 	data := aData
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> returnCause: aCause [
 	returnCause := aCause
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPUDTS >> writeOn: aMsg [
 	| calledData callingData dat |
 	calledData := calledAddr asByteArray.

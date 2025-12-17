@@ -3,8 +3,8 @@ I represent the SCCP Address including the
     SSN, GTI if present.
 "
 Class {
-	#name : #SCCPAddress,
-	#superclass : #Object,
+	#name : 'SCCPAddress',
+	#superclass : 'Object',
 	#instVars : [
 		'subSystemNumber',
 		'globalTitle',
@@ -12,29 +12,30 @@ Class {
 		'pointCode',
 		'gti_ind'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPAddress class >> createForSSN: aSymbol [
 	^self createWith: (self perform: ('ssn' , aSymbol asUppercase) asSymbol)
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPAddress class >> createWith: ssn [
 	^self createWith: ssn pointCode: nil
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPAddress class >> createWith: ssn poi: aPointCode [
 	self deprecated: 'Use >>#createWith:pointCode: instead'.
 	^self createWith: ssn pointCode: aPointCode
 
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPAddress class >> createWith: ssn pointCode: aPointCode [
 	^(self new)
 	    ssn: ssn;
@@ -44,7 +45,7 @@ SCCPAddress class >> createWith: ssn pointCode: aPointCode [
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPAddress class >> parseFrom: aByteArray [
 	| routed_ssn gti_ind gti len ai ssn pointCode dat |
 	pointCode := nil.
@@ -77,121 +78,121 @@ SCCPAddress class >> parseFrom: aByteArray [
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnAUC [
 	^10
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnBroadISDN [
 	^13
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnCAP [
 	^146
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnEIC [
 	^9
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnGSMSCF [
 	^147
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnGsmSCF [
 	^147
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnHLR [
 	^6
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnISUP [
 	^3
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnISUPSRV [
 	^11
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnITURsrvd [
 	^2
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnMAP [
 	^5
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnMSC [
 	^8
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnNotKnown [
 	^0
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnOMA [
 	^4
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnReserved [
 	^12
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnSCCPMgnt [
 	^1
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnSGSN [
 	^149
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnTCTest [
 	^14
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPAddress class >> ssnVLR [
 	^7
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPAddress >> asByteArray [
 	"Most simple address storing routine"
 
@@ -227,51 +228,51 @@ SCCPAddress >> asByteArray [
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> globalTitle [
 	^globalTitle
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> globalTitle: aGlobalTitle indicator: aGtiInd [
 	globalTitle := aGlobalTitle.
 	gti_ind := aGtiInd bitAnd: 16rF
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> gti [
 	^self globalTitle
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> gti: aGlobalTitle indicator: aGtiInd [
 	self globalTitle: aGlobalTitle indicator: aGtiInd
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> gtiAsParsed [
 	^self parseGlobalTitle
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> gtiFromAddr: aGlobalTitle [
 	gti_ind := aGlobalTitle class subType.
 	globalTitle := aGlobalTitle asByteArray
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> gtiInd [
 	^gti_ind
 
 ]
 
-{ #category : #gti }
+{ #category : 'gti' }
 SCCPAddress >> parseGlobalTitle [
 	^gti_ind = 0 
 	    ifTrue: [nil]
@@ -279,27 +280,27 @@ SCCPAddress >> parseGlobalTitle [
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> poi [
 	self deprecated: 'Use >>#pointCode instead'.
 	^self pointCode
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> poi: aPointCode [
 	self deprecated: 'Use >>#pointCode: instead'.
 	self pointCode: aPointCode
 
 ]
 
-{ #category : #'point-code-indicator' }
+{ #category : 'point-code-indicator' }
 SCCPAddress >> pointCode [
 	^pointCode
 
 ]
 
-{ #category : #'point-code-indicator' }
+{ #category : 'point-code-indicator' }
 SCCPAddress >> pointCode: aPointCode [
 	"When a non-nil point code is set the pointcode indicator will be set in the
 	 address information."
@@ -307,50 +308,50 @@ SCCPAddress >> pointCode: aPointCode [
 
 ]
 
-{ #category : #ssn }
+{ #category : 'ssn' }
 SCCPAddress >> routedOnSSN [
 	^routedOnSsn ifNil: [false]
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> routedOnSSN: aFlag [
 	self routedOnSubSystenNumber: aFlag
 
 ]
 
-{ #category : #ssn }
+{ #category : 'ssn' }
 SCCPAddress >> routedOnSubSystenNumber: aFlag [
 	routedOnSsn := aFlag
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> ssn [
 	^self subSystemNumber
 
 ]
 
-{ #category : #deprecated }
+{ #category : 'deprecated' }
 SCCPAddress >> ssn: aSubSystemNumber [
 	"deprecated"
 	self subSystemNumber: aSubSystemNumber
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPAddress >> subSystemNumber [
 	^subSystemNumber
 
 ]
 
-{ #category : #ssn }
+{ #category : 'ssn' }
 SCCPAddress >> subSystemNumber: aSubSystemNumber [
 	subSystemNumber := aSubSystemNumber
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SCCPAddress >> updateGlobalTitle: aGT [ 
 	globalTitle := aGT
 ]

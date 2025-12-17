@@ -3,12 +3,13 @@ I represent the Address Reference, e.g. the source
     or destination reference address as used for SCCP connections.
 "
 Class {
-	#name : #SCCPAddrReference,
-	#superclass : #Object,
-	#category : #SCCP
+	#name : 'SCCPAddrReference',
+	#superclass : 'Object',
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPAddrReference class >> fromByteArray: anArray [
 	"Parse from a ByteArray"
 
@@ -20,7 +21,7 @@ SCCPAddrReference class >> fromByteArray: anArray [
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPAddrReference class >> fromCData: anArray [
 	"Parse from an CArray"
 
@@ -32,7 +33,7 @@ SCCPAddrReference class >> fromCData: anArray [
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPAddrReference class >> store: anAddress on: aMsg [
 	"Store the threee bytes of an sccp address on a messagebuffer"
 	aMsg putByte: ((anAddress bitAnd: 16r000000FF) bitShift: -0).

@@ -2,17 +2,18 @@
 I hold the data of a connection request.
 "
 Class {
-	#name : #SCCPConnectionRequest,
-	#superclass : #SCCPMessage,
+	#name : 'SCCPConnectionRequest',
+	#superclass : 'SCCPMessage',
 	#instVars : [
 		'src',
 		'dst',
 		'pnc'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #construction }
+{ #category : 'construction' }
 SCCPConnectionRequest class >> initWith: src dest: dest data: data [
 	| pnc |
 	pnc := SCCPPNC new.
@@ -25,7 +26,7 @@ SCCPConnectionRequest class >> initWith: src dest: dest data: data [
 
 ]
 
-{ #category : #construction }
+{ #category : 'construction' }
 SCCPConnectionRequest class >> initWith: src dest: dest pnc: pnc [
 	^(self new)
 	    src: src
@@ -35,13 +36,13 @@ SCCPConnectionRequest class >> initWith: src dest: dest pnc: pnc [
 
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 SCCPConnectionRequest class >> msgType [
 	^SCCPHelper msgCr
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 SCCPConnectionRequest class >> parseFrom: aMsg [
 	| src addr proto variable optional pnc |
 	src := SCCPAddrReference fromByteArray: (aMsg copyFrom: 2 to: 4).
@@ -65,31 +66,31 @@ SCCPConnectionRequest class >> parseFrom: aMsg [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionRequest >> data [
 	^pnc at: SCCPHelper pncData
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionRequest >> data: aData [
 	pnc at: SCCPHelper pncData put: aData
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionRequest >> dest [
 	^dst
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionRequest >> src [
 	^src
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPConnectionRequest >> src: aSrc dest: aDest pnc: aPnc [
 	src := aSrc.
 	dst := aDest.
@@ -97,7 +98,7 @@ SCCPConnectionRequest >> src: aSrc dest: aDest pnc: aPnc [
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPConnectionRequest >> writeOn: aMsg [
 	| dat len addr |
 	addr := dst asByteArray.

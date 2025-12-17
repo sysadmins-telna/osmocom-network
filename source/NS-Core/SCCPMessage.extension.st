@@ -1,6 +1,6 @@
-Extension { #name : #SCCPMessage }
+Extension { #name : 'SCCPMessage' }
 
-{ #category : #'*NS-Core' }
+{ #category : '*NS-Core' }
 SCCPMessage >> tcapNetworkServiceDispatch: aService [
 	^ self shouldNotImplement
 ]

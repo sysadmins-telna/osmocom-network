@@ -1,10 +1,12 @@
 Class {
-	#name : #SCCPNetworkServiceTest,
-	#superclass : #TestCase,
-	#category : #'NS-Core-Tests'
+	#name : 'SCCPNetworkServiceTest',
+	#superclass : 'TestCase',
+	#category : 'NS-Core-Tests',
+	#package : 'NS-Core',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 SCCPNetworkServiceTest >> testSending [
 	| hlr hlrAddress vlr vlrAddress gotCalledAddr gotCallingAddr gotData onUnitDataCalled |
 	onUnitDataCalled := false.

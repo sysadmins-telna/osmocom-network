@@ -3,18 +3,19 @@ I represent the global title translation specific
     encoing of a SCCP header.
 "
 Class {
-	#name : #SCCPGlobalTitleTranslation,
-	#superclass : #SCCPGlobalTitle,
+	#name : 'SCCPGlobalTitleTranslation',
+	#superclass : 'SCCPGlobalTitle',
 	#instVars : [
 		'trans',
 		'plan',
 		'nature',
 		'addr'
 	],
-	#category : #SCCP
+	#category : 'SCCP',
+	#package : 'SCCP'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 SCCPGlobalTitleTranslation class >> initWith: data [
 	| enc |
 	enc := (data at: 2) bitAnd: 16r0F.
@@ -27,31 +28,31 @@ SCCPGlobalTitleTranslation class >> initWith: data [
 
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 SCCPGlobalTitleTranslation class >> subType [
 	^4
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> addr [
 	^self address
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> addr: anAddr [
 	addr := anAddr
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> address [
 	^addr
 
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 SCCPGlobalTitleTranslation >> asByteArray [
 	| data |
 	data := OrderedCollection new.
@@ -67,43 +68,43 @@ SCCPGlobalTitleTranslation >> asByteArray [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> encoding [
 	^addr size odd ifTrue: [1] ifFalse: [2]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> nature [
 	^nature
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> nature: aNai [
 	nature := aNai
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> plan [
 	^plan
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> plan: aPlan [
 	plan := aPlan
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> translation [
 	^trans ifNil: [0]
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SCCPGlobalTitleTranslation >> translation: aTrans [
 	trans := aTrans
 
