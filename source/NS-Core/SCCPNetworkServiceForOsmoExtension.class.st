@@ -3,18 +3,12 @@ Class {
 	#superclass : 'SCCPNetworkServiceOsmoDirect',
 	#instVars : [
 		'isIPARegistrationOk',
-		'ipaSeq',
-		'nodeIdAndClusterId'
+		'ipaSeq'
 	],
 	#category : 'NS-Core-Osmo EXT',
 	#package : 'NS-Core',
 	#tag : 'Osmo EXT'
 }
-
-{ #category : 'accessing' }
-SCCPNetworkServiceForOsmoExtension >> clusterId [
-	^ nodeIdAndClusterId clusterId
-]
 
 { #category : 'access' }
 SCCPNetworkServiceForOsmoExtension >> delegateClass [
@@ -39,8 +33,7 @@ SCCPNetworkServiceForOsmoExtension >> doSendIPA: aMessage to: aToPoc from: aFrom
 
 { #category : 'add range' }
 SCCPNetworkServiceForOsmoExtension >> endTidRange [
-	^ (ByteArray with: self clusterId  with: self nodeId with: 16rFF with: 16rFF)
-		asInteger
+	^ self subclassResponsibility 
 ]
 
 { #category : 'private' }
@@ -93,16 +86,6 @@ SCCPNetworkServiceForOsmoExtension >> newAddRAnge [
 	^ addRange
 ]
 
-{ #category : 'accessing' }
-SCCPNetworkServiceForOsmoExtension >> nodeId [
-	^ nodeIdAndClusterId nodeId
-]
-
-{ #category : 'accessing' }
-SCCPNetworkServiceForOsmoExtension >> nodeIdAndClusterId: anObject [
-	nodeIdAndClusterId := anObject
-]
-
 { #category : 'registering' }
 SCCPNetworkServiceForOsmoExtension >> registerOn: aDispatcher [
 	super registerOn: aDispatcher.
@@ -130,6 +113,5 @@ SCCPNetworkServiceForOsmoExtension >> sendNewAddRangeMessage [
 
 { #category : 'add range' }
 SCCPNetworkServiceForOsmoExtension >> startTidRange [
-	^ (ByteArray with: self clusterId  with: self nodeId with: 16r00 with: 16r00)
-		asInteger
+	^ self subclassResponsibility 
 ]
